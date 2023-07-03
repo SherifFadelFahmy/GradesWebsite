@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #game-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+        }
+
+        #spaceship {
+            position: absolute;
+            top: 225px;
+            left: 225px;
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+        }
+
+        .obstacle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Spaceship Game</h1>
+    <div id="game-container">
+        <div id="spaceship"></div>
+    </div>
+
+    <script>
+        // Game settings
+        const gameContainer = document.getElementById("game-container");
+        const spaceship = document.getElementById("spaceship");
+        let score = 0;
+        let isGameOver = false;
+
+        // Function to generate random number within a range
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Function to create an obstacle
+        function createObstacle() {
+            const obstacle = document.createElement("div");
+            obstacle.classList.add("obstacle");
+            obstacle.style.left = gameContainer.offsetWidth + "px";
+            obstacle.style.top = getRandomNumber(0, gameContainer.offsetHeight - 50) + "px";
+            gameContainer.appendChild(obstacle);
+
+            // Move the obstacle
+            let obstacleInterval = setInterval(() => {
+                if (!isGameOver) {
+                    obstacle.style.left = obstacle.offsetLeft - 5 + "px";
+
+                    // Check for collision
+                    if (
+                        obstacle.offsetLeft < spaceship.offsetLeft + spaceship.offsetWidth &&
+                        obstacle.offsetLeft + obstacle.offsetWidth > spaceship.offsetLeft &&
+                        obstacle.offsetTop < spaceship.offsetTop + spaceship.offsetHeight &&
+                        obstacle.offsetTop + obstacle.offsetHeight > spaceship.offsetTop
+                    ) {
+                        gameOver();
+                    }
+
+                    // Remove the obstacle if it goes off the screen
+                    if (obstacle.offsetLeft + obstacle.offsetWidth < 0) {
+                        score++;
+                        obstacle.remove();
+                        clearInterval(obstacleInterval);
+                    }
+                }
+            }, 10);
+        }
+
+        // Function to update the score
+        function updateScore() {
+            const scoreElement = document.getElementById("score");
+            scoreElement.textContent = "Score: " + score;
+        }
+
+        // Function to end the game
+        function gameOver() {
+            isGameOver = true;
+            alert("Game Over! Your score: " + score);
+            window.location.reload();
+        }
+
+        // Function to move the spaceship
+        function moveSpaceship(event) {
+            if (event.key === "ArrowUp" && spaceship.offsetTop > 0) {
+                spaceship.style.top = spaceship.offsetTop - 10 + "px";
+            } else if (
+                event.key === "ArrowDown" &&
+                spaceship.offsetTop < gameContainer.offsetHeight - spaceship.offsetHeight
+            ) {
+                spaceship.style.top = spaceship.offsetTop + 10 + "px";
+            }
+        }
+
+        // Event listener for spaceship movement
+        document.addEventListener("keydown", moveSpaceship);
+
+        // Start the game
+        setInterval(() => {
+            createObstacle();
+            updateScore();
+        }, 1500);
+    </script>
+</body>
+</html>
+

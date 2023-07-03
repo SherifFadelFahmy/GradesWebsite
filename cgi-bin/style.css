@@ -1,0 +1,85 @@
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: beige;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: beige;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    header img {
+      max-width: 100%;
+      height: auto;
+    }
+    .company-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .tagline {
+      font-size: 16px;
+      color: #888;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+    }
+    nav ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    .owner-section {
+      margin-top: 40px;
+    }
+    .owner-section h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .owner-section p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      font-size: 14px;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      .company-name {
+        font-size: 20px;
+      }
+      .tagline {
+        font-size: 14px;
+      }
+      .owner-section h2 {
+        font-size: 18px;
+      }
+      .owner-section p {
+        font-size: 14px;
+      }
+    }
