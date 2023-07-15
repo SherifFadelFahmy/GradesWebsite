@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+	        <meta charset="utf-8">
+        <meta name="description" content="This is a simple spaceship game in JavaScript.">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6R5CJ2PHL"></script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-W6R5CJ2PHL');
+        </script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
     <style>
         #game-container {
-            position: relative;
+  	    position: absolute;
+  	    top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 500px;
             height: 500px;
             border: 1px solid black;
-        }
+         }      
+
 
         #spaceship {
             position: absolute;
@@ -24,10 +42,39 @@
             height: 50px;
             background-color: red;
         }
+
+	.topofpage {
+           display: flex;
+           justify-content: center;
+         }    
+
     </style>
 </head>
 <body>
-    <h1>Spaceship Game</h1>
+    <div class="container">
+    <header>
+      <img src="logo.png" alt="Logo">
+      <h1 class="company-name">Sherif Fadel Fahmy</h1>
+      <p class="tagline">Innovate. Engineer. Educate.</p>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">About</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="links.html">Links</a></li>
+        <li><a href="mygrades.html">Get My Grades</a></li>
+	<li><a href="games.html">Games</a></li>
+      </ul>
+    </nav>
+    
+    <section class="owner-section">
+      <center>
+      <h2>Spaceship Game</h2>
+      </center>
+    </section>
+	
+    </div>
     <div id="game-container">
         <div id="spaceship"></div>
     </div>
@@ -92,6 +139,8 @@
 
         // Function to move the spaceship
         function moveSpaceship(event) {
+            // Prevent the default arrow key behavior (scrolling the page)
+            event.preventDefault();
             if (event.key === "ArrowUp" && spaceship.offsetTop > 0) {
                 spaceship.style.top = spaceship.offsetTop - 10 + "px";
             } else if (

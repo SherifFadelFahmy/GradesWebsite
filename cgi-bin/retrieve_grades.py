@@ -55,6 +55,7 @@ print('''
         <li><a href="../publications.html">Publications</a></li>
         <li><a href="../links.html">Links</a></li>
         <li><a href="../mygrades.html">Get My Grades</a></li>
+        <li><a href="games.html">Games</a></li>
       </ul>
     </nav>
     <section class="owner-section">
