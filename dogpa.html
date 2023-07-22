@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   	<meta charset="utf-8">
+   	<meta name="description" content="Simple GPA Calculator.">
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-W6R5CJ2PHL"></script>
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
+  		gtag('config', 'G-W6R5CJ2PHL');
+	</script>
+  	<title>GPA Calculator</title>
+  	<link rel="stylesheet" type="text/css" href="style.css">
+ 	</head>
+
+<body>
+
+<div class="container">
+    <header>
+      <img src="logo.png" alt="Logo" height="150" width="220">
+      <p class="tagline">Innovate. Engineer. Educate.</p>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">About</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="links.html">Links</a></li>
+        <li><a href="mygrades.html">Get My Grades</a></li>
+        <li><a href="games.html">Games</a></li>
+      </ul>
+    </nav>
+    <section class="owner-section">
+<h2>GPA Calculator</h2>
+
+<div id="inputSection">
+  <div id="zeroth">
+	<p> Please enter your current GPA and the number of hours you have achieved </p>
+        <label for="currentGPA">Current GPA:</label>
+        <input type="number" id="currentGPA" name="currentGPA" min="0" max="4"><br>
+        <label for="currentHours">Total Achieved Hours:</label>
+        <input type="number" id="currentHours" name="currentHours" min="0">
+   </div>
+  <br> 
+  <div id="first">
+	<p> Please enter the number of new courses you wish to take, then press the Read New Courses Info button. Once the fields for your new courses appear, please enter the credit hours of each course and the grade you expect to get. You can modify all values at any time. But if you change the number of courses, please click on the button to regenerate the fields for the number of courses you want.Please enter all grades in capital (A,A+,B,etc)</p>
+        <label for="inpnewCourses">Enter the number of new courses:</label>
+        <input type="number" id="inpnewCourses" name="inpnewCourses" />
+
+        <div id="divnewCoursesFields">
+                <!-- New course fields will be added here -->
+        </div>  
+
+
+        <button onclick="readNew()">Read New Courses Info</button>
+  </div>
+
+  <br>
+
+  <div id="second">
+	<p> Repeat the same as above, but for old courses you want to re-register to improve. You need to enter your old grade in addition to the above information. </p>
+        <label for="inpoldCourses">Enter the number of old courses:</label>
+        <input type="number" id="inpoldCourses" name="inpoldCourses" />
+
+        <div id="divoldCoursesFields">
+                <!-- New course fields will be added here -->
+        </div>
+
+
+        <button onclick="readOld()">Read Old Courses Info</button>
+  </div>
+
+</div>
+
+<p> Press on this button when you are ready to calculate your GPA</p>
+<button onclick="calculateGPA()">Calculate GPA</button>
+
+<p id="newGPA"></p>
+
+<script src="gpaCalculator.js"></script> 
+
+        </section>
+  </div>
+  <footer>
+    &copy; Sherif Fadel Fahmy 2023. All rights reserved.
+  </footer>
+
+</body>
+</html>
+
+
