@@ -3,6 +3,7 @@ let new_hours_sum = 0, old_hours_sum = 0, new_sum_GPA = 0, old_sum_GPA = 0, old_
 const gradePoints = {
     'A+': 12/3,
     'A': 11.5/3,
+    'A-': 11/3,
     'B+': 10/3,
     'B': 9/3,
     'B-': 8/3,
@@ -80,7 +81,10 @@ function calculateGPA() {
         	let expectedGrade = document.getElementById(field.id.replace('Hours', 'ExpectedGrade')).value;
         	old_hours_sum += hours;
         	old_sum_GPA += gradePoints[expectedGrade] * hours;
-        	old_before_GPA += gradePoints[currentGrade] * hours;
+		if (currentGrade!="W") { 
+        		old_before_GPA += gradePoints[currentGrade] * hours;
+		} 
+
 	    }
     }
 
