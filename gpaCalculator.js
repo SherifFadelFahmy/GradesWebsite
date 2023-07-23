@@ -68,8 +68,10 @@ function calculateGPA() {
 	    if (field.id.includes("newCourseHour")){
         	let hours = Number(field.value);
         	let grade = document.getElementById(field.id.replace('Hours', 'Grade')).value;
-        	new_hours_sum += hours;
-        	new_sum_GPA += gradePoints[grade] * hours;
+		if (grade!="W"){
+        	  new_hours_sum += hours;
+        	  new_sum_GPA += gradePoints[grade] * hours;
+		}
 	    }
     }
 
@@ -79,12 +81,13 @@ function calculateGPA() {
         	let hours = Number(field.value);
         	let currentGrade = document.getElementById(field.id.replace('Hours', 'CurrentGrade')).value;
         	let expectedGrade = document.getElementById(field.id.replace('Hours', 'ExpectedGrade')).value;
-        	old_hours_sum += hours;
-        	old_sum_GPA += gradePoints[expectedGrade] * hours;
-		if (currentGrade!="W") { 
+		if (expectedGrade!="W"){ 
+        	  old_hours_sum += hours;
+        	  old_sum_GPA += gradePoints[expectedGrade] * hours;
+		  if (currentGrade!="W") { 
         		old_before_GPA += gradePoints[currentGrade] * hours;
-		} 
-
+		  }
+		}	
 	    }
     }
 
