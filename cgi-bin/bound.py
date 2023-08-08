@@ -82,6 +82,44 @@ def grade_boundaries(data):
 print("Content-Type: text/html")    # HTML is following
 print()                             # blank line, end of headers
 
+print('''
+<html lang="en">
+<head>
+<meta name="description" content="Here are your grades, best of luck!!">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+          <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W6R5CJ2PHL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W6R5CJ2PHL');
+</script>
+  <title>Your Grades Are</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="../logo.png" alt="Logo" height="150" width="220">
+      <p class="tagline">Innovate. Engineer. Educate.</p>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="../index.html">About</a></li>
+        <li><a href="../books.html">Books</a></li>
+        <li><a href="../publications.html">Publications</a></li>
+        <li><a href="../links.html">Links</a></li>
+        <li><a href="../mygrades.html">Get My Grades</a></li>
+        <li><a href="../games.html">Games</a></li>
+        <li><a href="../dogpa.html">GPA Calculator</a></li>
+      </ul>
+    </nav>
+    <section class="owner-section">
+      <h2>Student Grades</h2>
+      ''')
+
 form = cgi.FieldStorage()
 
 # Check if file was uploaded
@@ -108,4 +146,13 @@ if 'uploadedfile' in form:
         os.unlink(tempname)
 else:
     print("<h1>No file was uploaded</h1>")
+print('''
+    </section>
+  </div>
+  <footer>
+    &copy; Sherif Fadel Fahmy 2023. All rights reserved.
+  </footer>
+</body>
+</html>
+''')
 
