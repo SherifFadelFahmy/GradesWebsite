@@ -9,10 +9,10 @@ import tempfile
 cgitb.enable()
 
 # grade boundaries for post 1610 students
-values = [97, 93, 89, 84, 80, 76, 73, 70, 67, 64, 60]
+values = [97, 93, 89, 84, 80, 76, 73, 70, 67, 64]
 
 # grade boundaries for pre 1610 students
-values2 = [95, 90, 85, 80, 75, 70, 65, 60, 56, 53, 50]
+values2 = [95, 90, 85, 80, 75, 70, 65, 60, 56, 53]
 
 # variable to store the rows read from the excel file
 data = []
@@ -23,12 +23,24 @@ cutoff2200 = 220000000
 # ID cutoff from the pass out of 60, but 12/40 students
 cutoff1610 = 16100000
 
-def read_excel_file(file_path, data):
-    workbook = openpyxl.load_workbook(file_path)
-    sheet = workbook.active
 
-    for row in sheet.iter_rows(values_only=True):
-        data.append(row)
+#This function reads the data from an excel file
+def read_excel_file(file_path,data):
+	workbook = openpyxl.load_workbook(file_path)
+	sheet = workbook.active
+	count=1
+	for row in sheet.iter_rows(values_only=True):
+		count=count+1
+		if (count>=15):
+			tuple_from_row = (row[2], row[5], row[10], row[15], row[18], row[30], row[32])
+			data.append(tuple_from_row)
+
+#def read_excel_file(file_path, data):
+#    workbook = openpyxl.load_workbook(file_path)
+#    sheet = workbook.active
+
+#    for row in sheet.iter_rows(values_only=True):
+#        data.append(row)
 
 def check_number(array, number):
     for entry in array:
@@ -47,6 +59,10 @@ def process_rows(data):
                 theid = row[5]
                 number = row[6]
                 print(f"<p>Student number {number} with ID {theid} should pass, please add two marks to the grades out of 60</p>")
+            elif ((60-row[0])>0 and (60-row[0])<=2 and (16-row[1])>0 and (16-row[1])<=2 ):
+                theid = row[5]
+                number = row[6]
+                print(f"<p>Student number {number} with ID {theid} should pass, add {60-row[0]} with at least {16-row[1]} in the final</p>")
         elif (row[5]>=cutoff1610 and row[5]<cutoff2200):
             if (row[0]>=60 and row[1]<12 and row[1]>=10):
                 theid = row[5]
@@ -56,6 +72,10 @@ def process_rows(data):
                 theid = row[5]
                 number = row[6]
                 print(f"<p>Student number {number} with ID {theid} should pass, please add two marks to the grades out of 60</p>")
+            elif ((60-row[0])>0 and (60-row[0])<=2 and (12-row[1])>0 and (12-row[1])<=2 ):
+                theid = row[5]
+                number = row[6]
+                print(f"<p>Student number {number} with ID {theid} should pass, add {60-row[0]} with at least {12-row[1]} in the final</p>")
         else:
             if (row[0]>=50 and row[1]<12 and row[1]>=10):
                 theid = row[5]
@@ -65,6 +85,10 @@ def process_rows(data):
                 theid = row[5]
                 number = row[6]
                 print(f"<p>Student number {number} with ID {theid} should pass, please add two marks to the grades out of 60</p>")
+            elif ((50-row[0])>0 and (50-row[0])<=2 and (12-row[1])>0 and (12-row[1])<=2 ):
+                theid = row[5]
+                number = row[6]
+                print(f"<p>Student number {number} with ID {theid} should pass, add {50-row[0]} with at least {12-row[1]} in the final</p>")
 
 def grade_boundaries(data):
     for row in data:
@@ -72,12 +96,12 @@ def grade_boundaries(data):
             if (check_number(values,row[0])):
                 theid = row[5]
                 number = row[6]
-                print(f"<p>Student number {number} with ID {theid} needs one grade up +1</p>")
+                print(f"<p>Student number {number} with ID {theid} needs one grade up +1 or round up</p>")
         else:
             if (check_number(values2,row[0])):
                 theid = row[5]
                 number = row[6]
-                print(f"<p>Student number {number} with ID {theid} needs one grade up +1</p>")
+                print(f"<p>Student number {number} with ID {theid} needs one grade up +1 or round up</p>")
 
 print("Content-Type: text/html")    # HTML is following
 print()                             # blank line, end of headers
