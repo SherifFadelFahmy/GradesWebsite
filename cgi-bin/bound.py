@@ -32,8 +32,13 @@ def read_excel_file(file_path,data):
 	for row in sheet.iter_rows(values_only=True):
 		count=count+1
 		if (count>=15):
-			tuple_from_row = (row[2], row[5], row[10], row[15], row[18], row[30], row[32])
-			data.append(tuple_from_row)
+                        try:
+                                tuple_from_row = (float(row[2]), float(row[5]), float(row[10]), float(row[15]), float(row[18]), int(row[30]), int(row[32]))
+                                data.append(tuple_from_row)
+                        except ValueError:
+                                tuple_from_row = (999, 999, 999, 999, 999, int(row[30]), int(row[32]))
+                                data.append(tuple_from_row)
+
 
 #def read_excel_file(file_path, data):
 #    workbook = openpyxl.load_workbook(file_path)
